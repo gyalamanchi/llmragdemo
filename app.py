@@ -1,15 +1,19 @@
 import os
 import requests
 
+from dotenv import load_dotenv
+load_dotenv()
+
 API_TOKEN = os.environ["API_TOKEN"] #Set a API_TOKEN environment variable before running
-API_URL = "" #Add a URL for a model of your choosing
+#API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-v0.1"
+API_URL = "https://api-inference.huggingface.co/models/TinyLlama/TinyLlama-1.1B-Chat-v1.0"
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
 
 def query(prompt):
     payload = {
         "inputs": prompt,
         "parameters": { #Try and experiment with the parameters
-            "max_new_tokens": 1024,
+            "max_new_tokens": 250,
             "temperature": 0.6,
             "top_p": 0.9,
             "do_sample": False,
